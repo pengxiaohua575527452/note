@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>index</title>
+    <link rel='icon' type='image/png' href='/favicon.png'>
+  </head>
+  <body>
+    <script type='module'>
+      import API from './src/js/API.js'
+
+      async function handleClick(){
+        let result = await API.get('/userinfo', {id: '111'})
+        console.table('获取点击的结果： ', result)
+      }
+
+      async function handlePost(){
+        let result = await API.post('/userinfo', {id:'111', password:'222'})
+      }
+
+      async function handlePatch(){
+        let result = await API.patch('/userinfo', {id: '111', password: '222'})
+        console.log('更新成功')
+      }
+
+      async function handleDelete(){
+        let result = await API.del('/userinfo', {id: '111'})
+      }
+
+      async function handleFileChange(){
+        // 获取上传的文件
+        let files = this.files
+        let file = files[0]
+        let formData = new FormData()
+        formData.append('file', file)
+        
+        let result = await API.upload('/upload', formData)
+      }
+
+      async function hanleUploadMultiple(){
+        let files = this.files
+        console.log('files:', files)
+        let formData = new FormData()
+
+        for(let i = 0; i< files.length; i++){
+          formData.append(i, files[i])
+        }
+        
+ 
+        
+
+        const XHR = new XMLHttpRequest();
+              XHR.timeout = 6000
+        
+        XHR.open('POST','/upload',true)
+        XHR.setRequestHeader('Content-Type', 'multipart/form-data; boundary=----WebKitFormBoundarydME80nPgJOItsWBm')
+        XHR.send(formData)
+
+
+        
+      }
+
+
+
+      const btnDOM = document.getElementById('btn')
+      const btnPostDOM = document.getElementById('btn-post')
+      const btnPatchDOM = document.getElementById('btn-patch')
+      const btnDelDOM = document.getElementById('del')
+      const fileDOM = document.getElementById('upload')
+      const uploadMultipleFileDOM = document.getElementById('uploadMultiple_')
+     
+      btnDOM.addEventListener('click', handleClick)
+      btnPostDOM.addEventListener('click', handlePost)
+      btnPatchDOM.addEventListener('click', handlePatch)
+      btnDelDOM.addEventListener('click', handleDelete)
+      // fileDOM.addEventListener('change', handleFileChange)
+      uploadMultipleFileDOM.addEventListener('change', hanleUploadMultiple)
+
+
+
+
+    </script>
+    <button id='btn'>GET</button>
+    <button id='btn-post'>POST</button>
+    <button id='btn-patch'>PATCH</button>
+    <button id='del'>DELETE</button>
+
+    <!-- 文件上床 -->
+    <form action="/upload" method='post'  enctype="multipart/form-data"> 
+      <input type="file" name='upload' id='uploadMultiple' multiple >
+      <input type="submit" value='submit'>
+    </form>
+    <!-- 多选 -->
+    <!-- <input type="file" name='upload' id='upload' value="单选"> -->
+    <input type="file" multiple id="uploadMultiple_" value="多选">
+
+  </body>
+</html>
+
+
+自己写原始的通过 ajax 实现图片的上传
+上传文件
+采用 woker-dowm
+以formData的形式发送数据

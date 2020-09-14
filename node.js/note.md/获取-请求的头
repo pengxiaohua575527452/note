@@ -1,0 +1,10 @@
+
+## 获取请求的头
+- 请求的参数是一个 <http.incomingMessage> 类
+- 获取浏览器上 Request Headers 的全部数据
+```
+req.headers
+
+```
+ 
+ 
