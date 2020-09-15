@@ -47,18 +47,41 @@
           formData.append(i, files[i])
         }
         
- 
-        
-
         const XHR = new XMLHttpRequest();
               XHR.timeout = 6000
         
         XHR.open('POST','/upload',true)
-        XHR.setRequestHeader('Content-Type', 'multipart/form-data; boundary=----WebKitFormBoundarydME80nPgJOItsWBm')
+        XHR.setRequestHeader('Content-Type', 'multipart/form-data;')
         XHR.send(formData)
+      }
 
+      async function handleDownload(){
+        // 下载文件
+        let XHR;
+        XHR = new XMLHttpRequest()
+        XHR.timeout = 6000
+        XHR.responseType = 'blob';
+        XHR.open('GET', '/download', true)
+        XHR.send()
 
-        
+        XHR.addEventListener('load', progressEvent => {
+          let blob, url, DOMA; 
+
+          blob = new Blob([progressEvent.target.response])
+          url = URL.createObjectURL(blob)
+          DOMA = document.createElement('a')
+          DOMA.href = url;
+          DOMA.download = '1.png'
+          DOMA.click()
+        })
+
+        XHR.addEventListener('err', progressEvent => {
+          console.log('发生了错误： ')
+        })
+
+        XHR.addEventListener('timeout', progressEvent => {
+          console.log('超时')
+        })
       }
 
 
@@ -69,6 +92,11 @@
       const btnDelDOM = document.getElementById('del')
       const fileDOM = document.getElementById('upload')
       const uploadMultipleFileDOM = document.getElementById('uploadMultiple_')
+      const btndownloadDOM = document.getElementById('download')
+
+
+
+
      
       btnDOM.addEventListener('click', handleClick)
       btnPostDOM.addEventListener('click', handlePost)
@@ -76,7 +104,7 @@
       btnDelDOM.addEventListener('click', handleDelete)
       // fileDOM.addEventListener('change', handleFileChange)
       uploadMultipleFileDOM.addEventListener('change', hanleUploadMultiple)
-
+      btndownloadDOM.addEventListener('click', handleDownload)
 
 
 
@@ -95,6 +123,10 @@
     <!-- <input type="file" name='upload' id='upload' value="单选"> -->
     <input type="file" multiple id="uploadMultiple_" value="多选">
 
+    <!-- 下载图片 -->
+    <div>
+      <button id='download'>下载图片</button>
+    </div>
   </body>
 </html>
 
@@ -103,3 +135,4 @@
 上传文件
 采用 woker-dowm
 以formData的形式发送数据
+播放视频

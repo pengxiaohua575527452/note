@@ -92,8 +92,8 @@ function upload(url, params){
         })
 
         try{
+ 
           XHR.open('POST', url, true)
-          XHR.setRequestHeader('Content-Type', ` ${params.get('file').type}`)
           XHR.send(params)
         }catch(err){
           reject(err)

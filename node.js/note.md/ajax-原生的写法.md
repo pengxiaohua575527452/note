@@ -3,6 +3,8 @@
 - 使用到的方法包括 [查看详情](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest)
 - 创建请求的对象-实例化 `let oReq = new XMLHttpRequest()`
 - 设置请求的头 `oReq.setRequestHeader('label', 'value)`
+- 设置响应的头 
+  - 响应的头的 content-type 属性决定了返回的数据类型，浏览器会自动转换成为设定的数据类型-不是很明白
 - 监听请求的状态 
     - 请求完成
     ```
@@ -65,4 +67,6 @@
   - DELTE 用来删除资源
 
 - 上传文件
+
+
  
