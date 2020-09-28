@@ -3,9 +3,14 @@
 (查看文档)[http://www.ruanyifeng.com/blog/2018/07/web-worker.html]
 ## 主线程
 ```
-const woker = new Woker('path/filename.js')
+// opstions 可以定义 woker 中使用的path/filename.js 文件是否是模块类型的文件
+// 也就是是否可以使用 import
+const woker = new Woker('path/filename.js', options)
 
-worker.onerror = e => {
+// 可以通过 importScripts('./module.js')
+// 导入一个模块.js 文件实现模拟的错误
+// 在woker.type === 'module' 的情况下不可以使用 importScripts()
+worker.onerror = err => {
   console.log('发生错误的回调函数')
 }
 
@@ -27,6 +32,10 @@ worker.terminate() // 结束worker , path/filename.js 文件里面的代码会�
 ## worker 线程
 ```
 // 引入其他的js文件
+// js 文件不能够是模块类型的文件
+// 就不不能够有 export 
+// 导入文件中声明的 变量 在当前woker 中能够直接访问
+// 等于与在当前worker 的JS文件中声明了
 importScript('path/filename1.js', 'path/filename2.js')
 
 

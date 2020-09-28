@@ -1,0 +1,1 @@
+## [查看文档](https://www.npmjs.com/package/sirv-cli)

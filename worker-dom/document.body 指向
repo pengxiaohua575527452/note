@@ -1,0 +1,2 @@
+## document.body 指向
+> 在worker-dom 之中 docuemnt.body 指向的是引入的容器

@@ -1,0 +1,13 @@
+## CSS 变量的使用
+[查看](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties)
+
+```
+:root{
+	--tool-height: 80px;
+}
+
+body{
+	height: var(--tool-height);
+}
+
+```

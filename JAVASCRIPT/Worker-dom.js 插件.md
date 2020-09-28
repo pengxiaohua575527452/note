@@ -21,7 +21,7 @@
 ```
 
 // 引入方法
-improt { upgradeElement } from "path/dist/main.js"
+improt { upgradeElement } from "path/dist/main.mjs"
 
 
 // 提升 HTMLElement

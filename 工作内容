@@ -2,3 +2,24 @@
 - 使用 node.js 创建服务器
 - 实现 .md 文件的保存
 - 实现 自定义的 版本管理 \r\n 一排排比较
+
+- es6 map
+- uint16Array 数据结构 == node.js 里面的 Buffer 
+	- 但是 node.js 里面的buffer 是用 8进制表示 === uint8Array
+- document.createElementNS
+- document.createElement
+- new Worker(URL.createObjectURL(new Blob([code]))); 把javascript类型的字符串转换成能够使用的代码，同时根据这个代码启用woker
+	- 如何在运行中实现启用 字符串类型的 javascript 代码
+		- 获取文件中的字符串 fetch(url).then(res=>res.text())
+		- new Blob() 生成一个不可变的，原始的类文件数据对象
+		- URL.createObjectURL(实参数据) 生成一个 URL 对象，这个 URL 对象指向了实参数据
+			- 可以下载这个数据
+			- 也可以worker中使用这个数据
+			- 如何在文件中直接使用了？？？ 可以通过 <script> <a> …… 等标签使用
+
+- BFS 最小渲染功能
+	- 实现根据 元素据指定特定形式的渲染形式 [实现背景颜色的控制]
+		- 通过生成指定的 svelte文件，导入实现这样的共嗯
+		- js文件生活曾一个 svelte文件的资源 url
+		- 导入这个 url 
+		- 把这个 搭配接受的元数据 写入到 html 模板中；
