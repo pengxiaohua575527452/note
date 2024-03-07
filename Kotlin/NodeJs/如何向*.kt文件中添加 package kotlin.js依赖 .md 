@@ -1,0 +1,22 @@
+# 概述
+- 向*.kt文件中添加 package kotlin.js 依赖
+- 以实现在*.kt文件中使用
+- console, js 等一些不需要显示导入的package
+- 通过把目录设置为 jsMain 的源文件即可
+
+
+# build.gradle.kts
+```kotlin
+    js(IR){
+        nodejs{
+            sourceSets{
+                val jsMain by getting {
+                    resources.srcDir("src/nodeMain")
+                }
+            }
+        }
+    }
+```
+- val jsMain by getting{ resources.srcDir("src/nodeMain")}
+- 这样 src/nodeMain文件就是nodeJs平台的源文件目录了
+- 同时 jsMain 表示这个是属于 js类型的源文件
